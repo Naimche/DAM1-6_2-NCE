@@ -49,6 +49,8 @@ class Casa(override var municion: Int, override var municionARestar: Int) : Disp
 
 class Coche(override var municion: Int, override var municionARestar: Int) : DispararDefault
 
+class Bocadillo(override var municion: Int, override var municionARestar: Int) : DispararDefault
+
 class Pistola(
     nombre: String,
     municion: Int,
@@ -125,7 +127,5 @@ fun main() {
     println(bmw.municion)
     println(bmw.dispara())
     println(bmw.recarga(100))
-
-
 }
 
