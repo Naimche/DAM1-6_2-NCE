@@ -124,7 +124,6 @@ fun main() {
     //BMW
     println(bmw.municion)
     println(bmw.dispara())
-
     println(bmw.recarga(100))
 
 
