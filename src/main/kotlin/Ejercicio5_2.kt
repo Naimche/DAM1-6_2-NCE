@@ -118,17 +118,14 @@ fun main() {
     //Fin del programa
 
     println()
-    println("Interfaz añadida")
     //CASA
-    println("Municion de la casa " + casita.municion)
-    casita.dispara()
-    println("Municion despues de disparar " + casita.municion)
+    println(casita.municion)
+    println(casita.dispara())
     //BMW
-    println("Disparo del BMW municion ${bmw.municion}")
-    bmw.dispara()
-    println("Municion despues de disparar ${bmw.municion} y recarga")
-    bmw.recarga(200)
     println(bmw.municion)
+    println(bmw.dispara())
+
+    println(bmw.recarga(100))
 
 
 }
