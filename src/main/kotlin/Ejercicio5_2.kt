@@ -1,14 +1,14 @@
 open class ArmaDeFuego(
     private val nombre: String,
-    override var municion: Int,
+    final override var municion: Int,
     override val municionARestar: Int,
     override val tipoDeMunicion: String,
-    override val radio: String,
+    final override val radio: String,
     override val danio: Int
 
 ) : DispararDefault {
     init {
-        require(radio == "Pequeño" || radio == "Amplio")
+        require(radio == "Pequeño" || radio == "Amplio"){-1}
         require(municion > 0)
     }
 
@@ -25,7 +25,6 @@ interface DispararDefault {
     val tipoDeMunicion: String
     val radio: String
     val danio: Int
-
     fun dispara(): Int {
         if (municion >= municionARestar)
             municion -= municionARestar
@@ -47,6 +46,10 @@ class Casa(
     override val radio: String,
     override val danio: Int
 ) : DispararDefault {
+    init {
+        require(radio == "Pequeño" || radio == "Amplio"){-1}
+        require(municion > 0)
+    }
     override fun toString(): String {
         return "La Casa $nombre le queda un numero de $municion de tipo $tipoDeMunicion con un radio y un daño $danio"
     }
@@ -58,6 +61,10 @@ class Casa(
         override val radio: String,
         override val danio: Int
     ) : DispararDefault {
+        init {
+            require(radio == "Pequeño" || radio == "Amplio"){-1}
+            require(municion > 0)
+        }
         override fun toString(): String {
             return "El Coche $nombre le queda un numero de $municion de tipo $tipoDeMunicion con un radio $radio y un daño $danio"
         }
@@ -69,6 +76,10 @@ class Casa(
             override val radio: String,
             override val danio: Int
         ) : DispararDefault {
+            init {
+                require(radio == "Pequeño" || radio == "Amplio"){-1}
+                require(municion > 0)
+            }
             override fun toString(): String {
                 return "El Bocadillo $nombre le queda un numero de $municion de tipo $tipoDeMunicion con un radio $radio y un daño $danio"
 
@@ -125,12 +136,12 @@ class Casa(
 
         fun main() {
             //Variables
-            val pistola = Pistola("Five-Seven", 10, 2, 1, "Calibre 50")
+            val pistola = Pistola("Five-Seven", 10, 2, 1, "Calibre 50",)
             val bazooka = Bazooka("RPG", 10, 100, 1, "Misil")
-            val rifle = Rifle("Commando", 6, 7, 1)
-            val casita = Casa("Pepe", 2, 6, "Cristales", "Pequeño", 8)
-            val bmw = Coche("Bmw", 1, 2, "Ruedas", "Pequeño", 9)
-            val chorizo = Bocadillo("Chorizo", 2, 1, "Chorizo", "Pequeño", 5)
+            val rifle = Rifle("Commando", 16, 7, 1)
+            val casita = Casa("Pepe", 12, 6, "Cristales", "Pequeño", 8)
+            val bmw = Coche("Bmw", 8, 2, "Ruedas", "Pequeño", 9)
+            val chorizo = Bocadillo("Chorizo", 21, 1, "Chorizo", "Pequeño", 5)
             val lista = listOf(pistola, bazooka, rifle, casita, bmw)
             val mapaArmas = mutableMapOf<String, DispararDefault>()
             //Programa que recorre un mapa y dispara cada valor.
