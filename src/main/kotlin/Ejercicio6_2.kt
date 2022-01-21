@@ -1,35 +1,34 @@
-interface DispararDefault {
-    var municion: Int
-    val municionARestar: Int
-    val tipoDeMunicion: String
-    val radio: String
-    val danio: Int
-    fun dispara(): Int {
-        if (municion >= municionARestar)
-            municion -= municionARestar
-        return municion
+abstract class DispararDefault{
 
+    abstract fun disparar() : Int
 
-    }
-
-    fun recarga(c: Int): Int {
-        municion += c
-        return municion
-    }
+    abstract fun recargar(municionParaCargar:Int) : Int
 }
 
 open class ArmaDeFuego(
     private val nombre: String,
-    final override var municion: Int,
-    override val municionARestar: Int,
-    override val tipoDeMunicion: String,
-    final override val radio: String,
-    override val danio: Int
+    var municion: Int,
+    val municionARestar: Int,
+    val tipoDeMunicion: String,
+    val radio: String,
+    val danio: Int
 
-) : DispararDefault {
+) : DispararDefault() {
     init {
         require(radio == "Pequeño" || radio == "Amplio") { -1 }
         require(municion > 0)
+    }
+
+    override fun disparar(): Int {
+        if (municion >= municionARestar)
+            municion -= municionARestar
+        return municion
+
+    }
+
+    override fun recargar(municionParaCargar: Int): Int {
+        municion += municionParaCargar
+        return municion
     }
 
 
@@ -40,14 +39,24 @@ open class ArmaDeFuego(
 
 class Casa(
     val nombre: String,
-    override var municion: Int, override var municionARestar: Int,
-    override val tipoDeMunicion: String,
-    override val radio: String,
-    override val danio: Int
-) : DispararDefault {
+    var municion: Int, var municionARestar: Int,
+    val tipoDeMunicion: String,
+    val radio: String,
+    val danio: Int
+) : DispararDefault() {
     init {
         require(radio == "Pequeño" || radio == "Amplio") { -1 }
         require(municion > 0)
+    }
+
+    override fun disparar(): Int {
+        if (municion >= municionARestar)
+            municion -= municionARestar
+        return municion
+    }
+
+    override fun recargar(municionParaCargar: Int): Int {
+        TODO("Not yet implemented")
     }
 
     override fun toString(): String {
@@ -57,14 +66,24 @@ class Casa(
 
 class Coche(
     val nombre: String,
-    override var municion: Int, override var municionARestar: Int,
-    override val tipoDeMunicion: String,
-    override val radio: String,
-    override val danio: Int
-) : DispararDefault {
+    var municion: Int, var municionARestar: Int,
+    val tipoDeMunicion: String,
+    val radio: String,
+    val danio: Int
+) : DispararDefault() {
     init {
         require(radio == "Pequeño" || radio == "Amplio") { -1 }
         require(municion > 0)
+    }
+
+    override fun disparar(): Int {
+        if (municion >= municionARestar)
+            municion -= municionARestar
+        return municion
+    }
+
+    override fun recargar(municionParaCargar: Int): Int {
+        TODO("Not yet implemented")
     }
 
     override fun toString(): String {
@@ -74,15 +93,26 @@ class Coche(
 
 class Bocadillo(
     val nombre: String,
-    override var municion: Int, override var municionARestar: Int,
-    override val tipoDeMunicion: String,
-    override val radio: String,
-    override val danio: Int
-) : DispararDefault {
+    var municion: Int, var municionARestar: Int,
+    val tipoDeMunicion: String,
+    val radio: String,
+    val danio: Int
+) : DispararDefault() {
     init {
         require(radio == "Pequeño" || radio == "Amplio") { -1 }
         require(municion > 0)
     }
+
+    override fun disparar(): Int {
+        if (municion >= municionARestar)
+            municion -= municionARestar
+        return municion
+    }
+
+    override fun recargar(municionParaCargar: Int): Int {
+        TODO("Not yet implemented")
+    }
+
 
     override fun toString(): String {
         return "El Bocadillo $nombre le queda un numero de $municion de tipo $tipoDeMunicion con un radio $radio y un daño $danio"
@@ -98,7 +128,7 @@ class Pistola(
     tipoDeMunicion: String,
     radio: String = "Pequeño"
 ) : ArmaDeFuego(nombre, municion, municionARestar, tipoDeMunicion, radio, danio) {
-    override fun dispara(): Int {
+    fun dispara(): Int {
         if (municion >= municionARestar)
             municion -= municionARestar
         return municion
@@ -114,7 +144,7 @@ class Rifle(
     radio: String = "Pequeño"
 
 ) : ArmaDeFuego(nombre, municion, municionARestar, tipoDeMunicion, radio, danio) {
-    override fun dispara(): Int {
+    fun dispara(): Int {
         if (municion >= municionARestar * 2)
             municion -= municionARestar * 2
         return municion
@@ -130,7 +160,7 @@ class Bazooka(
     radio: String = "Amplio"
 
 ) : ArmaDeFuego(nombre, municion, municionARestar, tipoDeMunicion, radio, danio) {
-    override fun dispara(): Int {
+    fun dispara(): Int {
         if (municion >= municionARestar * 3)
             municion -= municionARestar * 3
         return municion
@@ -155,7 +185,7 @@ fun main() {
     }
 
     mapaArmas.mapValues { it ->
-        it.value.also { it.dispara(); println(it) }
+        it.value.also { it.disparar(); println(it) }
     }
     repeat(100) { print('*') }
     //Fin del programa
