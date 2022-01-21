@@ -56,7 +56,8 @@ class Casa(
     }
 
     override fun recargar(municionParaCargar: Int): Int {
-        TODO("Not yet implemented")
+        municion += municionParaCargar
+        return municion
     }
 
     override fun toString(): String {
@@ -83,7 +84,8 @@ class Coche(
     }
 
     override fun recargar(municionParaCargar: Int): Int {
-        TODO("Not yet implemented")
+        municion += municionParaCargar
+        return municion
     }
 
     override fun toString(): String {
@@ -110,7 +112,8 @@ class Bocadillo(
     }
 
     override fun recargar(municionParaCargar: Int): Int {
-        TODO("Not yet implemented")
+        municion += municionParaCargar
+        return municion
     }
 
 
@@ -191,4 +194,9 @@ fun main() {
     //Fin del programa
 
 }
-
+/*b) ¿Que beneficios obtienes al usar una clase abstracta? ¿Y de una interface?
+    Que en cuyo caso las clases que hereden sus funciones sean diferentes se implementara en cada uno de su forma correspondiente en cambio
+    en interfaces son metodos para todas las clases
+c) ¿Que modificadores y mecanismos has utilizado para bloquear y forzar la herencia de clases y métodos?
+    override, private
+ */
